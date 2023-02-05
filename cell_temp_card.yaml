@@ -1,0 +1,457 @@
+uid: Cell_Temp_Card_3
+tags:
+  - co
+  - humidity
+  - motion
+  - temperature
+props:
+  parameters:
+    - description: Title on top of the card
+      label: Title
+      name: title
+      required: false
+      type: TEXT
+      groupName: general
+    - description: Icon on top of the card (only f7 icons (without f7:))
+      label: Icon
+      name: icon
+      required: false
+      type: TEXT
+      groupName: general
+    - description: Background image name
+      label: Background image
+      name: bg_image_url
+      required: false
+      type: TEXT
+      groupName: general
+    - description: in rgba() or HEX or empty
+      label: Background Color
+      name: bgcolor
+      required: false
+      type: TEXT
+      groupName: general
+    - context: item
+      description: An item, measuring room's temperature
+      label: Temperature sensor
+      name: temp_item
+      required: false
+      type: TEXT
+      groupName: sensors
+    - context: item
+      description: An item, measuring room's light level
+      label: Lightlevel sensor
+      name: lightlevel_item
+      required: false
+      type: TEXT
+      groupName: sensors
+    - context: item
+      description: An item, measuring room's humidity
+      label: Humidity sensor
+      name: humidity_item
+      required: false
+      type: TEXT
+      groupName: sensors
+    - context: item
+      description: An item, measuring room's CO2 level
+      label: CO2 sensor
+      name: CO_item
+      required: false
+      type: TEXT
+      groupName: sensors
+    - context: item
+      description: An item, setting room's desired temperature
+      label: Target Temperature
+      name: temperatureset_item
+      required: false
+      type: TEXT
+      groupName: climate
+    - context: item
+      description: An item, setting room's desired humidity
+      label: Target Humidity
+      name: humidityset_item
+      required: false
+      type: TEXT
+      groupName: climate
+    - context: item
+      description: An item to switch cooling On/Off
+      label: Cooling On/Off
+      name: coolingon_item
+      required: false
+      type: TEXT
+      groupName: climate
+    - context: item
+      description: An item to switch heating On/Off
+      label: Heating On/Off
+      name: heatingon_item
+      required: false
+      type: TEXT
+      groupName: climate
+    - context: item
+      description: An item to switch humidifier On/Off
+      label: Humidifier On/Off
+      name: humidifieron_item
+      required: false
+      type: TEXT
+      groupName: climate
+    - context: item
+      description: Main climate fan speeed
+      label: Fanspeed
+      name: fanspeed_item
+      required: false
+      type: TEXT
+      groupName: climate
+    - context: item
+      description: An item to switch fan On/Off
+      label: Fan on/off
+      name: fanon_item
+      required: false
+      type: TEXT
+    - context: item
+      description: An item to choose humidifier fan's speed
+      label: Humidifier fan speed
+      name: humidifierfan_item
+      required: false
+      type: TEXT
+      groupName: climate
+    - context: item
+      description: Motion sensor
+      label: Motion item
+      name: motion_item
+      required: false
+      type: TEXT
+      groupName: security
+    - context: item
+      description: A group, containing all kind of lights - On/Off, Dimmers, Colorlights, widget will try to show them, by reading their tags.
+      label: Lights group
+      name: light
+      required: false
+      type: TEXT
+    - context: item
+      label: Door item
+      name: door_item
+      required: false
+      type: TEXT
+      groupName: security
+    - context: item
+      label: Lock item
+      name: lock_item
+      required: false
+      type: TEXT
+      groupName: security
+    - context: item
+      label: Window item
+      name: window_item
+      required: false
+      type: TEXT
+      groupName: security
+    - context: item
+      label: Leakage item
+      name: leakage_item
+      required: false
+      type: TEXT
+      groupName: security
+    - context: item
+      label: Smoke item
+      name: smoke_item
+      required: false
+      type: TEXT
+      groupName: security
+    - context: item
+      description: SamsungTV or Kodi Media title
+      label: Media Title
+      name: mediaTitle
+      required: false
+      type: TEXT
+      groupName: media
+    - context: item
+      description: TV power On/Off, widget will hide media remote section if this item is not set
+      label: Power Item
+      name: power
+      required: false
+      type: TEXT
+      groupName: media
+    - context: item
+      description: TV channel item, if present
+      label: Channel
+      name: channel
+      required: false
+      type: TEXT
+      groupName: media
+    - context: item
+      description: Samsung TV KeyCode channel
+      label: Key Code
+      name: inputAction
+      required: false
+      type: TEXT
+      groupName: media
+    - context: item
+      description: Volume control item, if present, any dimmer type item
+      label: Volume Control Item
+      name: volumeControlItem
+      required: false
+      type: TEXT
+      groupName: media
+    - context: item
+      description: SamsungTV source name, or Kodi Media title, or any other item to show on remote's screen
+      label: Source Name
+      name: sourceName
+      required: false
+      type: TEXT
+      groupName: media
+  parameterGroups:
+    - name: general
+      label: General settings
+    - name: sensors
+      label: Sensors settings
+    - name: media
+      label: Media group settings
+    - name: climate
+      label: Climate settings
+    - name: security
+      label: Security settings
+timestamp: Dec 25, 2022, 3:38:48 PM
+component: f7-card
+config:
+  style:
+    background: transparent
+    background-brightness: 60%
+    background-color: "=props.bgcolor ? props.bgcolor : ''"
+    background-image: "=props.bg_image_url ? 'url(/static/' + (props.bg_image_url) + ')' : ''"
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+    border-radius: var(--f7-card-expandable-border-radius)
+    box-shadow: 5px 5px 10px 1px var(--f7-bars-bg-color)
+    color: var(--f7-text-color)
+    font-size: medium
+    font-weight: 500
+    height: 150px
+    margin: 5
+    noShadow: false
+    padding: 0
+    text-shadow: 1px 1px 1px var(--f7-bars-bg-color), -1px 1px 1px var(--f7-bars-bg-color), -1px -1px 1px var(--f7-bars-bg-color), 1px -1px 1px var(--f7-bars-bg-color)
+slots:
+  default:
+    - component: f7-card-header
+      config:
+        style:
+          justify-content: center
+          margin: 0
+          min-height: 30px
+          padding: 0
+      slots:
+        default:
+          - component: f7-icon
+            config:
+              f7: =props.icon
+              size: 20
+              visible: "=props.icon ? true : false"
+          - component: Label
+            config:
+              style:
+                font-size: 18px
+                font-weight: bold
+                margin-left: 5px
+              text: "=props.title ? props.title : ''"
+    - component: f7-card-content
+      config:
+        style:
+          align-items: flex-start
+          display: flex
+          justify-content: space-between
+          margin: 7px
+          padding: 0
+      slots:
+        default:
+          - component: f7-col
+            config: {}
+            slots:
+              default:
+                - component: f7-row
+                  config:
+                    style:
+                      flex-wrap: nowrap
+                      justify-content: flex-start
+                    visible: "=props.temp_item ? true : false"
+                  slots:
+                    default:
+                      - component: oh-icon
+                        config:
+                          icon: martinitemp
+                          state: =items[props.temp_item].state
+                          style:
+                            filter: drop-shadow(3px 2px 2px rgb(0 0 0 / 0.4))
+                          width: 23
+                      - component: Label
+                        config:
+                          style:
+                            color: '=(Number.parseFloat(items[props.temp_item].state.split(" ")[0]) > 30) ? "rgb(242,75,36)" : (Number.parseFloat(items[props.temp_item].state.split(" ")[0]) < 10) ? "rgba(32, 185, 256,0.8)" : "var(--f7-text-color)"'
+                            margin-left: 5px
+                          text: =Math.round(Number.parseFloat(items[props.temp_item].state))+" °C"
+                - component: f7-row
+                  config:
+                    style:
+                      flex-wrap: nowrap
+                      justify-content: flex-start
+                      z-index: 2
+                    visible: "=props.humidity_item ? true : false"
+                  slots:
+                    default:
+                      - component: oh-icon
+                        config:
+                          icon: hum
+                          state: =items[props.humidity_item].state
+                          style:
+                            filter: drop-shadow(3px 2px 2px rgb(0 0 0 / 0.4))
+                          width: 23
+                      - component: Label
+                        config:
+                          style:
+                            margin-left: 5px
+                          text: =Number.parseInt(items[props.humidity_item].state) +" %"
+                - component: f7-row
+                  config:
+                    style:
+                      flex-wrap: nowrap
+                      justify-content: flex-start
+                      z-index: 2
+                    visible: "=props.lightlevel_item ? true : false"
+                  slots:
+                    default:
+                      - component: oh-icon
+                        config:
+                          icon: lightlevel
+                          state: =items[props.lightlevel_item].state
+                          style:
+                            filter: drop-shadow(3px 2px 2px rgb(0 0 0 / 0.4))
+                          width: 23
+                      - component: Label
+                        config:
+                          style:
+                            color: "=(items[props.lightlevel_item].state < 1) ? 'gray' : 'var(--f7-text-color)'"
+                            margin-left: 5px
+                          text: =Number.parseInt(items[props.lightlevel_item].state) +" lux"
+                - component: f7-row
+                  config:
+                    style:
+                      flex-wrap: nowrap
+                      z-index: 2
+                    visible: "=props.CO_item ? true : false"
+                  slots:
+                    default:
+                      - component: oh-icon
+                        config:
+                          icon: carbondioxidecloud
+                          state: =items[props.CO_item].state
+                          style:
+                            filter: drop-shadow(3px 2px 2px rgb(0 0 0 / 0.4))
+                          width: 23
+                      - component: Label
+                        config:
+                          style:
+                            color: '=(Number.parseFloat(items[props.CO_item].state.split(" ")[0]) > 1500) ? "red" : (Number.parseFloat(items[props.CO_item].state.split(" ")[0]) > 1000) ? "orangered" : "var(--f7-text-color)"'
+                            margin-left: 5px
+                            white-space: nowrap
+                          text: =Number.parseInt(items[props.CO_item].state) +" ppm"
+          - component: f7-col
+            config:
+              style:
+                align-items: center
+                display: flex
+                flex-direction: column
+            slots:
+              default:
+                - component: f7-row
+                  config:
+                    style:
+                      z-index: 1
+                    visible: "=props.motion_item ? true : false"
+                  slots:
+                    default:
+                      - component: oh-icon
+                        config:
+                          icon: f7:dot_radiowaves_left_right
+                          style:
+                            color: '=(items[props.motion_item].state == "ON") ? "red" : "var(--f7-text-color)"'
+                          width: 25
+                - component: f7-row
+                  config:
+                    style:
+                      z-index: 1
+                    visible: "=props.door_item || props.lock_item || props.window_item ? true : false"
+                  slots:
+                    default:
+                      - component: oh-icon
+                        config:
+                          icon: "=(items[props.lock_item].state === 'ON') ? 'f7:lock' : 'f7:lock_open'"
+                          visible: "=props.lock_item ? true : false"
+                          width: 25
+                      - component: oh-icon
+                        config:
+                          icon: "=(items[props.door_item].state === 'ON') ? 'door-closed' : 'door-open'"
+                          visible: "=props.door_item ? true : false"
+                          width: 25
+                      - component: oh-icon
+                        config:
+                          icon: "=(items[props.window_item].state === 'ON') ? 'window' : 'window-open'"
+                          visible: "=props.window_item ? true : false"
+                          width: 25
+                - component: oh-button
+                  config:
+                    action: group
+                    actionGroupPopupItem: =props.light
+                    style:
+                      padding: 0
+                      z-index: 99
+                    visible: "=props.light ? true : false"
+                  slots:
+                    default:
+                      - component: oh-icon
+                        config:
+                          icon: '=(items[props.light].state == "ON") ? "f7:lightbulb_fill" : "f7:lightbulb"'
+                          item: =loop.item.name
+                          style:
+                            color: '=(items[props.light].state == "ON") ? "yellow" : "var(--f7-text-color)"'
+                            text-shadow: '=(items[loop.switchItem.name].state == "ON") ? "none" : var(--f7-text-color)'
+                          width: 30
+          - component: oh-link
+            config:
+              action: popup
+              actionModal: widget:Cell_Temp_Card_Expanded
+              actionModalConfig:
+                CO_item: =props.CO_item
+                bg_image_url: =props.bg_image_url
+                bgcolor: =props.bgcolor
+                channel: =props.channel
+                door_item: =props.door_item
+                fanon_item: =props.fanon_item
+                fanspeed_item: =props.fanspeed_item
+                humidifierfan_item: =props.humidifierfan_item
+                humidifieron_item: =props.humidifieron_item
+                humidity_item: =props.humidity_item
+                humidityset_item: =props.humidityset_item
+                icon: =props.icon
+                inputAction: =props.inputAction
+                leakage_item: =props.leakage_item
+                light: =props.light
+                lightlevel_item: =props.lightlevel_item
+                lock_item: =props.lock_item
+                mediaTitle: =props.
+                motion_item: =props.motion_item
+                power: =props.power
+                smoke_item: =props.smoke_item
+                sourceName: =props.sourceName
+                temp_item: =props.temp_item
+                temperatureset_item: =props.temperatureset_item
+                title: =props.title
+                volumeControlItem: =props.volumeControlItem
+                window_item: =props.window_item
+              style:
+                height: 137px
+                left: 0px
+                margin: 0px
+                padding: 0
+                position: absolute
+                top: -30px
+                width: 100%
+                z-index: 3
