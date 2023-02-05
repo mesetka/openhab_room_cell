@@ -1,0 +1,1701 @@
+uid: Cell_Temp_Card_Expanded
+tags:
+  - co
+  - humidity
+  - motion
+  - temperature
+props:
+  parameters:
+    - description: Title on top of the card
+      label: Title
+      name: title
+      required: false
+      type: TEXT
+    - description: Icon on top of the card (only f7 icons (without f7:))
+      label: Icon
+      name: icon
+      required: false
+      type: TEXT
+    - description: Background image name
+      label: Background image
+      name: bg_image_url
+      required: false
+      type: TEXT
+    - description: in rgba() or HEX or empty
+      label: Background Color
+      name: bgcolor
+      required: false
+      type: TEXT
+    - context: item
+      label: Temperature
+      name: temp_item
+      required: false
+      type: TEXT
+    - context: item
+      label: Target Temperature
+      name: temperatureset_item
+      required: false
+      type: TEXT
+    - context: item
+      label: Cooling On/Off
+      name: coolingon_item
+      required: false
+      type: TEXT
+    - context: item
+      label: Heating On/Off
+      name: heatingon_item
+      required: false
+      type: TEXT
+    - context: item
+      label: Lightlevel
+      name: lightlevel_item
+      required: false
+      type: TEXT
+    - context: item
+      label: Humidity
+      name: humidity_item
+      required: false
+      type: TEXT
+    - context: item
+      label: Target Humidity
+      name: humidityset_item
+      required: false
+      type: TEXT
+    - context: item
+      label: Humidifier On/Off
+      name: humidifieron_item
+      required: false
+      type: TEXT
+    - context: item
+      label: Fanspeed
+      name: fanspeed_item
+      required: false
+      type: TEXT
+    - context: item
+      label: Fan on/off
+      name: fanon_item
+      required: false
+      type: TEXT
+    - context: item
+      label: Humidifier fan speed
+      name: humidifierfan_item
+      required: false
+      type: TEXT
+    - context: item
+      label: CO
+      name: CO_item
+      required: false
+      type: TEXT
+    - context: item
+      label: Motion item
+      name: motion_item
+      required: false
+      type: TEXT
+    - context: item
+      label: Lights group
+      name: light
+      required: false
+      type: TEXT
+    - context: item
+      label: Door item
+      name: door_item
+      required: false
+      type: TEXT
+    - context: item
+      label: Lock item
+      name: lock_item
+      required: false
+      type: TEXT
+    - context: item
+      label: Window item
+      name: window_item
+      required: false
+      type: TEXT
+    - context: item
+      label: Leakage item
+      name: leakage_item
+      required: false
+      type: TEXT
+    - context: item
+      label: Smoke item
+      name: smoke_item
+      required: false
+      type: TEXT
+    - context: item
+      label: Media Title
+      name: mediaTitle
+      required: false
+      type: TEXT
+    - context: item
+      label: Power Item
+      name: power
+      required: false
+      type: TEXT
+    - context: item
+      label: Channel
+      name: channel
+      required: false
+      type: TEXT
+    - context: item
+      label: Key Code
+      name: inputAction
+      required: false
+      type: TEXT
+    - context: item
+      label: Volume Control Item
+      name: volumeControlItem
+      required: false
+      type: TEXT
+    - context: item
+      label: Source Name
+      name: sourceName
+      required: false
+      type: TEXT
+  parameterGroups: []
+timestamp: Feb 5, 2023, 3:22:22 AM
+component: f7-card
+config:
+  hideNavbar: true
+  style:
+    --f7-badge-text-color: var(--f7-text-color)
+    --f7-bars-border-color: none
+    --f7-bars-translucent-blur: none
+    --f7-bars-translucent-opacity: none
+    --f7-navbar-bg-color: transparent
+    --f7-navbar-border-color: transparent
+    --f7-navbar-link-color: var(--f7-text-color)
+    --f7-page-navbar-offset: none
+    --f7-bars-bg-color: transparent
+    --f7-page-content-extra-padding-bottom: none
+    --f7-page-content-extra-padding-top: none
+    --f7-page-searchbar-offset: none
+    --f7-page-subnavbar-offset: none
+    --f7-page-toolbar-bottom-offset: none
+    --f7-page-toolbar-top-offset: none
+    background: transparent
+    background-brightness: 60%
+    background-color: "=props.bgcolor ? props.bgcolor : ''"
+    background-image: "=props.bg_image_url ? 'url(/static/' + (props.bg_image_url) + ')' : ''"
+    background-position: down
+    background-repeat: no-repeat
+    background-size: cover
+    border-radius: var(--f7-card-expandable-border-radius)
+    box-shadow: 5px 5px 10px 1px var(--f7-card-bg-color)
+    color: var(--f7-text-color)
+    font-size: large
+    font-weight: 700
+    height: 100%
+    margin: 0
+    noShadow: false
+    overflow: hidden
+    text-shadow: -0.006em -0.006em 0.18em var(--f7-card-bg-color)
+slots:
+  default:
+    - component: f7-card-header
+      config:
+        style:
+          display: flex
+          justify-content: center
+          margin: 0
+          min-height: 35px
+          padding: 0
+      slots:
+        default:
+          - component: f7-icon
+            config:
+              f7: =props.icon
+              size: 20
+              visible: "=props.icon ? true : false"
+          - component: Label
+            config:
+              style:
+                font-size: 20px
+                font-weight: bold
+                margin-left: 5px
+              text: "=props.title ? props.title : ''"
+    - component: f7-card-content
+      config:
+        style:
+          margin: 0
+          padding: 0
+      slots:
+        default:
+          - component: f7-row
+            slots:
+              default:
+                - component: f7-segmented
+                  config:
+                    color: gray
+                    raised: false
+                    strong: true
+                    style:
+                      backdrop-filter: blur(5px)
+                      width: 100%
+                  slots:
+                    default:
+                      - component: oh-button
+                        config:
+                          action: variable
+                          actionVariable: select
+                          actionVariableValue: 1
+                          active: =(vars.select == 1)
+                          iconF7: thermometer
+                          iconSize: 40
+                          large: true
+                          outline: =(vars.select == 1)
+                          style:
+                            height: 45px
+                      - component: oh-button
+                        config:
+                          action: variable
+                          actionVariable: select
+                          actionVariableValue: 2
+                          active: =(vars.select == 2)
+                          iconF7: thermometer_snowflake
+                          iconSize: 40
+                          large: true
+                          outline: =(vars.select == 2)
+                          style:
+                            height: 45px
+                          visible: "=props.temperatureset_item || props.humidityset_item || props.fanon_item || props.coolingon_item || props.heatingon_item ? true : false"
+                      - component: oh-button
+                        config:
+                          action: variable
+                          actionVariable: select
+                          actionVariableValue: 3
+                          active: =(vars.select == 3)
+                          iconF7: film
+                          iconSize: 40
+                          large: true
+                          outline: =(vars.select == 3)
+                          style:
+                            height: 45px
+                          visible: "=props.power ? true : false"
+                      - component: oh-button
+                        config:
+                          action: variable
+                          actionVariable: select
+                          actionVariableValue: 4
+                          active: =(vars.select == 4)
+                          iconF7: shield
+                          iconSize: 40
+                          large: true
+                          outline: =(vars.select == 4)
+                          style:
+                            height: 45px
+                          visible: "=props.lock_item || props.door_item || props.window_item || props.motion_item || props.leakage_item ? true : false"
+                      - component: oh-button
+                        config:
+                          action: variable
+                          actionVariable: select
+                          actionVariableValue: 5
+                          active: =(vars.select == 5)
+                          iconF7: graph_square
+                          iconSize: 40
+                          large: true
+                          outline: =(vars.select == 5)
+                          style:
+                            height: 45px
+          - component: f7-tab
+            config:
+              class:
+                - display-flex
+                - justify-content-space-between
+                - flex-direction-column
+              style:
+                animation: f7-fade-in 300ms
+                margin: 5px
+                padding: 0px
+              visible: =(vars.select == 1 || vars.select == NULL)
+            slots:
+              default:
+                - component: f7-row
+                  config:
+                    style:
+                      border-bottom: 1px solid
+                      filter: drop-shadow(0px 0px 1px var(--f7-card-bg-color))
+                      margin: 10px
+                  slots:
+                    default:
+                      - component: f7-col
+                        config:
+                          style:
+                            width: auto
+                            user-select: none
+                            pointer-events: none
+                        slots:
+                          default:
+                            - component: f7-row
+                              config:
+                                style:
+                                  flex-wrap: nowrap
+                                  justify-content: flex-start
+                                visible: "=props.temp_item ? true : false"
+                              slots:
+                                default:
+                                  - component: oh-icon
+                                    config:
+                                      icon: martinitemp
+                                      state: =items[props.temp_item].state
+                                      width: 30
+                                  - component: Label
+                                    config:
+                                      style:
+                                        color: '=(Number.parseFloat(items[props.temp_item].state.split(" ")[0]) > 30) ? "rgb(242,75,36)" : (Number.parseFloat(items[props.temp_item].state.split(" ")[0]) < 10) ? "rgba(32, 185, 256,0.8)" : "var(--f7-text-color)"'
+                                        margin-left: 5px
+                                      text: =items[props.temp_item].state.split(" ")[0]+" °C"
+                            - component: f7-row
+                              config:
+                                style:
+                                  flex-wrap: nowrap
+                                  justify-content: flex-start
+                                  z-index: 2
+                                visible: "=props.humidity_item ? true : false"
+                              slots:
+                                default:
+                                  - component: oh-icon
+                                    config:
+                                      icon: hum
+                                      state: =items[props.humidity_item].state
+                                      width: 30
+                                  - component: Label
+                                    config:
+                                      style:
+                                        color: '=(Number.parseFloat(items[props.humidity_item].state.split(" ")[0]) < 35) ? "rgb(242,75,36)" : (Number.parseFloat(items[props.humidity_item].state.split(" ")[0]) > 75) ? "green" : "var(--f7-text-color)"'
+                                        margin-left: 5px
+                                      text: =items[props.humidity_item].state.split(" ")[0]+" %"
+                            - component: f7-row
+                              config:
+                                style:
+                                  flex-wrap: nowrap
+                                  justify-content: flex-start
+                                  z-index: 2
+                                visible: "=props.lightlevel_item ? true : false"
+                              slots:
+                                default:
+                                  - component: oh-icon
+                                    config:
+                                      icon: lightlevel
+                                      state: =items[props.lightlevel_item].state
+                                      width: 30
+                                  - component: Label
+                                    config:
+                                      style:
+                                        color: "=(items[props.lightlevel_item].state < 1) ? 'gray' : 'var(--f7-text-color)'"
+                                        margin-left: 5px
+                                      text: =items[props.lightlevel_item].state.split(" ")[0]+" lux"
+                            - component: f7-row
+                              config:
+                                style:
+                                  flex-wrap: nowrap
+                                  justify-content: flex-start
+                                  z-index: 2
+                                visible: "=props.CO_item ? true : false"
+                              slots:
+                                default:
+                                  - component: oh-icon
+                                    config:
+                                      icon: carbondioxidecloud
+                                      state: =items[props.CO_item].state
+                                      width: 30
+                                  - component: Label
+                                    config:
+                                      style:
+                                        color: '=(Number.parseFloat(items[props.CO_item].state.split(" ")[0]) > 1500) ? "red" : (Number.parseFloat(items[props.CO_item].state.split(" ")[0]) > 1000) ? "rgb(242,75,36)" : "var(--f7-text-color)"'
+                                        margin-left: 5px
+                                        white-space: nowrap
+                                      text: =items[props.CO_item].state.split(" ")[0]+" ppm"
+                      - component: f7-col
+                        config:
+                          style:
+                            align-items: center
+                            display: flex
+                            flex-direction: column
+                            justify-content: flex-end
+                            width: auto
+                        slots:
+                          default:
+                            - component: f7-col
+                              config:
+                                style:
+                                  z-index: 1
+                                visible: "=props.motion_item || props.lock_item ? true : false"
+                              slots:
+                                default:
+                                  - component: oh-button
+                                    config:
+                                      action: analyzer
+                                      actionAnalyzerItems: =[props.motion_item]
+                                      large: true
+                                      visible: "=props.motion_item ? true : false"
+                                    slots:
+                                      default:
+                                        - component: oh-icon
+                                          config:
+                                            icon: f7:dot_radiowaves_left_right
+                                            style:
+                                              color: '=(items[props.motion_item].state == "ON") ? "red" : "var(--f7-text-color)"'
+                                            width: 40
+                                  - component: oh-button
+                                    config:
+                                      action: toggle
+                                      actionCommand: ON
+                                      actionCommandAlt: OFF
+                                      actionItem: =[props.lock_item]
+                                      large: true
+                                      visible: "=props.lock_item ? true : false"
+                                    slots:
+                                      default:
+                                        - component: oh-icon
+                                          config:
+                                            icon: "=(items[props.lock_item].state === 'ON') ? 'f7:lock' : 'f7:lock_open'"
+                                            style:
+                                              color: var(--f7-text-color)
+                                            width: 30
+                            - component: f7-col
+                              config:
+                                style:
+                                  z-index: 1
+                                visible: "=props.door_item || props.window_item ? true : false"
+                              slots:
+                                default:
+                                  - component: oh-icon
+                                    config:
+                                      icon: "=(items[props.door_item].state === 'ON') ? 'door-closed' : 'door-open'"
+                                      visible: "=props.door_item ? true : false"
+                                      width: 25
+                                  - component: oh-icon
+                                    config:
+                                      icon: "=(items[props.window_item].state === 'ON') ? 'window' : 'window-open'"
+                                      visible: "=props.window_item ? true : false"
+                                      width: 25
+                - component: f7-block
+                  config:
+                    style:
+                      border-bottom: 1px solid
+                      margin: 5px
+                      padding: 0px
+                  slots:
+                    default:
+                      - component: oh-repeater
+                        config:
+                          fetchMetadata: semantics,metadata
+                          filter: '(loop.switchItem.type=="Switch") ? true : false'
+                          for: switchItem
+                          groupItem: =props.light
+                          sourceType: itemsInGroup
+                        slots:
+                          default:
+                            - component: f7-row
+                              config:
+                                style:
+                                  margin-bottom: 5px
+                              slots:
+                                default:
+                                  - component: oh-button
+                                    config:
+                                      actionItem: =loop.switchItem.name
+                                      action: toggle
+                                      actionCommand: ON
+                                      actionCommandAlt: OFF
+                                      text: =loop.switchItem.label
+                                      iconF7: '=(items[loop.switchItem.name].state == "ON") ? "lightbulb_fill" : "lightbulb"'
+                                      iconSize: 35
+                                      round: true
+                                      style:
+                                        padding: 0
+                                        backdrop-filter: blur(2px)
+                                        width: calc(100% - 85px)
+                                        height: 2.1em
+                                        line-height: 1.9em
+                                        text-align: start
+                                        --f7-button-bg-color: transparent
+                                        --f7-button-text-color: var(--f7-text-color)
+                                        --f7-button-font-size: 1em
+                                        --f7-button-hover-bg-color: transparent
+                                  - component: oh-toggle
+                                    config:
+                                      color: yellow
+                                      item: =loop.switchItem.name
+                                      style:
+                                        --f7-toggle-height: 35px
+                                        --f7-toggle-inactive-color: rgba(100,100,100,0.8)
+                                        --f7-toggle-width: 75px
+                      - component: oh-repeater
+                        config:
+                          fetchMetadata: semantics,metadata
+                          filter: '(loop.dimmerItem.type=="Dimmer") ? true : false'
+                          for: dimmerItem
+                          groupItem: =props.light
+                          sourceType: itemsInGroup
+                        slots:
+                          default:
+                            - component: f7-row
+                              config:
+                                style:
+                                  margin-left: 5px
+                                  margin-bottom: 5px
+                                  align-items: center
+                                  font-size: 1em
+                              slots:
+                                default:
+                                  - component: oh-icon
+                                    config:
+                                      height: 30
+                                      icon: f7:sun_max
+                                      style:
+                                        z-index: 2
+                                        user-select: none
+                                        pointer-events: none
+                                        color: '=(loop.dimmerItem.state == "ON") ? "yellow" : var(--f7-text-color)'
+                                  - component: Label
+                                    config:
+                                      style:
+                                        z-index: 2
+                                        user-select: none
+                                        pointer-events: none
+                                        margin-left: 5px
+                                        margin-right: auto
+                                      text: =loop.dimmerItem.label
+                                  - component: oh-toggle
+                                    config:
+                                      color: yellow
+                                      item: =loop.dimmerItem.name
+                                      style:
+                                        z-index: 2
+                                        --f7-toggle-height: 35px
+                                        --f7-toggle-inactive-color: rgba(100,100,100,0.8)
+                                        --f7-toggle-width: 75px
+                                        margin-left: auto
+                                  - component: oh-slider
+                                    config:
+                                      color: white
+                                      item: =loop.dimmerItem.name
+                                      releaseOnly: true
+                                      label: true
+                                      max: '=(loop.dimmerItem.stateDescription && loop.dimmerItem.stateDescription.maximum) ? loop.dimmerItem.stateDescription.maximum : "100"'
+                                      style:
+                                        position: absolute
+                                        --f7-range-bar-active-bg-color: linear-gradient(to right, rgba(50,50,0,.4), rgba(255,255,0,.9))
+                                        --f7-range-bar-bg-color: transparent
+                                        --f7-range-bar-border-radius: 35px
+                                        --f7-range-bar-size: 35px
+                                        --f7-range-knob-color: transparent
+                                        --f7-range-knob-size: 0px
+                                        --f7-range-label-bg-color: transparent
+                                        --f7-range-label-border-radius: 5px
+                                        --f7-range-label-font-size: 25px
+                                        --f7-range-label-font-weight: 600
+                                        --f7-range-label-padding: 20px 0px
+                                        --f7-range-label-size: 40px
+                                        --f7-range-label-text-color: var(--f7-text-color)
+                                        width: calc(100% - 85px)
+                      - component: oh-repeater
+                        config:
+                          fetchMetadata: semantics,metadata
+                          filter: 'loop.colorTempItem.metadata.semantics.config.relatesTo == "Property_ColorTemperature" ? true : false'
+                          for: colorTempItem
+                          groupItem: =props.light
+                          sourceType: itemsInGroup
+                        slots:
+                          default:
+                            - component: f7-row
+                              config:
+                                style:
+                                  margin-left: 5px
+                                  margin-bottom: 5px
+                                  align-items: center
+                                  font-size: 1em
+                                  text-overflow: ellipsis
+                                  white-space: nowrap
+                              slots:
+                                default:
+                                  - component: oh-icon
+                                    config:
+                                      height: 30
+                                      icon: f7:dial
+                                      style:
+                                        z-index: 2
+                                        user-select: none
+                                        pointer-events: none
+                                        color: '=(loop.colorTempItem.state == "ON") ? "yellow" : var(--f7-text-color)'
+                                  - component: Label
+                                    config:
+                                      style:
+                                        z-index: 2
+                                        user-select: none
+                                        pointer-events: none
+                                        margin-right: auto
+                                      text: =loop.colorTempItem.label
+                                  - component: oh-slider
+                                    config:
+                                      color: white
+                                      item: =loop.colorTempItem.name
+                                      label: true
+                                      releaseOnly: true
+                                      max: 6500
+                                      min: 1700
+                                      style:
+                                        --f7-range-bar-active-bg-color: linear-gradient(to right, rgba(255, 121, 0,.8), rgba(200, 249, 253,0.8))
+                                        --f7-range-bar-bg-color: transparent
+                                        --f7-range-bar-border-radius: 35px
+                                        --f7-range-bar-size: 35px
+                                        --f7-range-knob-size: 0px
+                                        --f7-range-knob-color: transparent
+                                        --f7-range-label-border-radius: 5px
+                                        --f7-range-label-font-size: 25px
+                                        --f7-range-label-font-weight: 400
+                                        --f7-range-label-padding: 20px 0px
+                                        --f7-range-label-size: 40px
+                                        --f7-range-label-text-color: var(--f7-text-color)
+                                        --f7-range-label-bg-color: transparent
+                                        position: absolute
+                                        width: 99%
+                      - component: oh-repeater
+                        config:
+                          fetchMetadata: semantics,metadata
+                          filter: '(loop.colorItem.type=="Color") ? true : false'
+                          for: colorItem
+                          groupItem: =props.light
+                          sourceType: itemsInGroup
+                        slots:
+                          default:
+                            - component: f7-row
+                              config:
+                                style:
+                                  align-items: center
+                                  --f7-color-picker-slider-knob-size: 25px
+                                  --f7-color-picker-slider-size: 15px
+                                  margin-bottom: 5px
+                              slots:
+                                default:
+                                  - component: oh-icon
+                                    config:
+                                      height: 30
+                                      icon: f7:slider_horizontal_3
+                                      style:
+                                        color: '=(loop.colorItem.state == "ON") ? "yellow" : var(--f7-text-color)'
+                                  - component: Label
+                                    config:
+                                      style:
+                                        margin-right: auto
+                                      text: =loop.colorItem.label
+                                  - component: oh-colorpicker
+                                    config:
+                                      item: =loop.colorItem.name
+                                      modules:
+                                        - hsb-sliders
+          - component: f7-tab
+            config:
+              class:
+                - display-flex
+                - justify-content-space-between
+                - flex-direction-column
+              style:
+                animation: f7-fade-in 300ms
+                margin: 5px
+                padding: 0px
+              visible: =(vars.select == 2)
+            slots:
+              default:
+                - component: f7-segmented
+                  config:
+                    color: gray
+                    raised: false
+                    strong: true
+                    style:
+                      backdrop-filter: blur(5px)
+                      width: 100%
+                  slots:
+                    default:
+                      - component: oh-button
+                        config:
+                          action: toggle
+                          actionCommand: ON
+                          actionCommandAlt: OFF
+                          actionItem: =props.heatingon_item
+                          active: '=(items[props.heatingon_item].state == "ON") ? true : false'
+                          iconF7: thermometer_sun
+                          large: true
+                          outline: '=(items[props.heatingon_item].state == "ON") ? true : false'
+                          visible: "=props.heatingon_item ? true : false"
+                      - component: oh-button
+                        config:
+                          action: toggle
+                          actionCommand: ON
+                          actionCommandAlt: OFF
+                          actionItem: =props.coolingon_item
+                          active: '=(items[props.coolingon_item].state == "ON") ? true : false'
+                          iconF7: thermometer_snowflake
+                          large: true
+                          outline: '=(items[props.coolingon_item].state == "ON") ? true : false'
+                          visible: "=props.coolingon_item ? true : false"
+                      - component: oh-button
+                        config:
+                          action: toggle
+                          actionCommand: ON
+                          actionCommandAlt: OFF
+                          actionItem: =props.fanon_item
+                          active: '=(items[props.fanon_item].state == "ON") ? true : false'
+                          iconF7: wind
+                          large: true
+                          outline: '=(items[props.fanon_item].state == "ON") ? true : false'
+                          visible: "=props.fanon_item ? true : false"
+                      - component: oh-button
+                        config:
+                          action: toggle
+                          actionCommand: ON
+                          actionCommandAlt: OFF
+                          actionItem: =props.humidifieron_item
+                          active: '=(items[props.humidifieron_item].state == "ON") ? true : false'
+                          iconF7: drop
+                          large: true
+                          outline: '=(items[props.humidifieron_item].state == "ON") ? true : false'
+                          visible: "=props.humidifieron_item ? true : false"
+                - component: f7-block
+                  config:
+                    style:
+                      display: flex
+                      width: 100%
+                  slots:
+                    default:
+                      - component: f7-col
+                        config:
+                          style:
+                            margin: auto
+                          visible: "=props.temperatureset_item ? true : false"
+                        slots:
+                          default:
+                            - component: f7-col
+                              config: {}
+                              slots:
+                                default:
+                                  - component: Label
+                                    config:
+                                      style:
+                                        color: var(--f7-text-color)
+                                      text: Задать температуру
+                                  - component: oh-stepper
+                                    config:
+                                      autorepeat: true
+                                      fill: true
+                                      item: =(props.temperatureset_item)
+                                      raised: true
+                                      round: true
+                                      step: 0.5
+                                      style:
+                                        --f7-stepper-border-width: 0px
+                                        --f7-stepper-fill-button-bg-color: rgba(255, 0, 0, 0.4)
+                                        --f7-stepper-height: 40px
+                                        --f7-stepper-raised-box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5), -2px -2px 10px rgba(0, 0, 0, 0.5)
+                                        --f7-stepper-value-font-weight: 600
+                                        --f7-stepper-value-text-color: var(--f7-text-color)
+                                        backdrop-filter: blur(5px)
+                                        filter: drop-shadow(0px 0px 1px var(--f7-card-bg-color))
+                            - component: f7-col
+                              config:
+                                visible: "=props.fanspeed_item ? true : false"
+                              slots:
+                                default:
+                                  - component: Label
+                                    config:
+                                      style:
+                                        color: var(--f7-text-color)
+                                      text: Режим вентилятора
+                                  - component: oh-stepper
+                                    config:
+                                      fill: true
+                                      item: =props.fanspeed_item
+                                      max: 4
+                                      min: 1
+                                      raised: true
+                                      round: true
+                                      style:
+                                        --f7-stepper-border-width: 0px
+                                        --f7-stepper-fill-button-bg-color: rgba(0, 0, 255, 0.4)
+                                        --f7-stepper-height: 40px
+                                        --f7-stepper-raised-box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5), -2px -2px 10px rgba(0, 0, 0, 0.5)
+                                        --f7-stepper-value-font-weight: 600
+                                        --f7-stepper-value-text-color: var(--f7-text-color)
+                                        backdrop-filter: blur(5px)
+                                        filter: drop-shadow(0px 0px 1px var(--f7-card-bg-color))
+                      - component: f7-col
+                        config:
+                          style:
+                            margin: auto
+                          visible: "=props.humidityset_item ? true : false"
+                        slots:
+                          default:
+                            - component: f7-col
+                              config: {}
+                              slots:
+                                default:
+                                  - component: Label
+                                    config:
+                                      style:
+                                        color: var(--f7-text-color)
+                                      text: Задать влажность
+                                  - component: oh-stepper
+                                    config:
+                                      autorepeat: true
+                                      autorepeatDynamic: true
+                                      fill: true
+                                      item: =props.humidityset_item
+                                      raised: true
+                                      round: true
+                                      style:
+                                        --f7-stepper-border-width: 0px
+                                        --f7-stepper-fill-button-bg-color: rgba(0, 255, 255, 0.4)
+                                        --f7-stepper-height: 40px
+                                        --f7-stepper-raised-box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5), -2px -2px 10px rgba(0, 0, 0, 0.5)
+                                        --f7-stepper-value-font-weight: 600
+                                        --f7-stepper-value-text-color: var(--f7-text-color)
+                                        backdrop-filter: blur(5px)
+                                        filter: drop-shadow(0px 0px 1px var(--f7-card-bg-color))
+                            - component: f7-col
+                              config:
+                                visible: "=props.humidifierfan_item ? true : false"
+                              slots:
+                                default:
+                                  - component: Label
+                                    config:
+                                      style:
+                                        color: var(--f7-text-color)
+                                      text: Режим вентилятора
+                                  - component: oh-stepper
+                                    config:
+                                      fill: true
+                                      item: =props.humidifierfan_item
+                                      max: 4
+                                      min: 1
+                                      raised: true
+                                      round: true
+                                      style:
+                                        --f7-stepper-border-width: 0px
+                                        --f7-stepper-fill-button-bg-color: rgba(0, 0, 255, 0.4)
+                                        --f7-stepper-height: 40px
+                                        --f7-stepper-raised-box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5), -2px -2px 10px rgba(0, 0, 0, 0.5)
+                                        --f7-stepper-value-font-weight: 600
+                                        --f7-stepper-value-text-color: var(--f7-text-color)
+                                        backdrop-filter: blur(5px)
+                                        filter: drop-shadow(0px 0px 1px var(--f7-card-bg-color))
+          - component: f7-tab
+            config:
+              class:
+                - display-flex
+                - justify-content-space-between
+                - flex-direction-column
+              style:
+                animation: f7-fade-in 300ms
+                margin: 5px
+                margin-right: 5px
+                padding: 0px
+              visible: =(vars.select == 3)
+            slots:
+              default:
+                - component: f7-block
+                  config:
+                    style:
+                      height: 70px
+                  slots:
+                    default:
+                      - component: oh-button
+                        config:
+                          large: true
+                          raised: true
+                          style:
+                            box-shadow: 0px 2px 5px
+                            height: 40px
+                            line-height: 1.5
+                            top: 5px
+                            white-space: pre-wrap
+                            word-break: break-word
+                          text: "=(items[props.sourceName].state !== 'UNDEF' ? (items[props.sourceName].state +' '+ items[props.mediaTitle].state) : items[props.mediaTitle].state)"
+                          textColor: var(--f7-text-color)
+                - component: f7-block
+                  config:
+                    style:
+                      width: auto
+                  slots:
+                    default:
+                      - component: f7-row
+                        config: {}
+                        slots:
+                          default:
+                            - component: oh-button
+                              config:
+                                action: command
+                                actionCommand: "=(items[props.power].state === 'OFF') ? 'ON' : 'OFF' "
+                                actionItem: =props.power
+                                iconF7: power
+                                iconSize: 20
+                                style:
+                                  background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                                  border-radius: 12px
+                                  box-shadow: 0px 2px 2px
+                                  color: "=(items[props.power].state === 'OFF') ? 'var(--f7-text-color)' : 'red' "
+                                  width: 25%
+                            - component: oh-button
+                              config:
+                                action: command
+                                actionCommand: KEY_HOME
+                                actionItem: =props.inputAction
+                                iconF7: house
+                                iconSize: 20
+                                style:
+                                  background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                                  border-radius: 12px
+                                  box-shadow: 0px 2px 2px
+                                  color: var(--f7-text-color)
+                                  width: 25%
+                            - component: oh-button
+                              config:
+                                action: command
+                                actionCommand: KEY_MENU
+                                actionItem: =props.inputAction
+                                iconF7: menu
+                                iconSize: 20
+                                style:
+                                  background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                                  border-radius: 12px
+                                  box-shadow: 0px 2px 5px
+                                  color: var(--f7-text-color)
+                                  width: 25%
+                      - component: f7-row
+                        config:
+                          style:
+                            color: var(--f7-text-color)
+                            height: 37px
+                            margin-top: 5px
+                            width: 100%
+                        slots:
+                          default:
+                            - component: f7-segmented
+                              config:
+                                round: true
+                                strong: true
+                                style:
+                                  --f7-segmented-strong-between-buttons: 3px
+                                  --f7-segmented-strong-padding: 0px
+                                  border-radius: 12px
+                                  box-shadow: 1px 0px 8px
+                                  width: 100%
+                              slots:
+                                default:
+                                  - component: oh-button
+                                    config:
+                                      action: command
+                                      actionCommand: INCREASE
+                                      actionItem: =props.volumeControlItem
+                                      iconF7: speaker_3
+                                      iconSize: 25
+                                      style:
+                                        background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                                        border-right: 1px solid gray
+                                        width: 50%
+                                  - component: oh-button
+                                    config:
+                                      action: command
+                                      actionCommand: KEY_CHUP
+                                      actionItem: =props.inputAction
+                                      iconF7: arrow_up
+                                      iconSize: 25
+                                      style:
+                                        background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                                        border-left: 1px solid gray
+                                        width: 50%
+                      - component: f7-row
+                        config:
+                          style:
+                            width: 100%
+                        slots:
+                          default:
+                            - component: f7-segmented
+                              config:
+                                round: true
+                                strong: true
+                                style:
+                                  --f7-segmented-strong-between-buttons: 3px
+                                  --f7-segmented-strong-padding: 0px
+                                  border-radius: 12px
+                                  box-shadow: 1px 0px 5px
+                                  width: 100%
+                              slots:
+                                default:
+                                  - component: oh-button
+                                    config:
+                                      action: command
+                                      actionCommand: DECREASE
+                                      actionItem: =props.volumeControlItem
+                                      bgColor: black
+                                      iconF7: speaker_1
+                                      iconSize: 25
+                                      style:
+                                        background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                                        border-right: 1px solid gray
+                                        color: var(--f7-text-color)
+                                        width: 50%
+                                  - component: oh-button
+                                    config:
+                                      action: command
+                                      actionCommand: KEY_CHDOWN
+                                      actionItem: =props.inputAction
+                                      bgColor: black
+                                      iconF7: arrow_down
+                                      iconSize: 25
+                                      style:
+                                        background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                                        border-left: 1px solid gray
+                                        color: var(--f7-text-color)
+                                        width: 50%
+                      - component: f7-row
+                        config:
+                          style:
+                            margin-top: 10px
+                        slots:
+                          default:
+                            - component: oh-button
+                              config:
+                                action: command
+                                actionCommand: KEY_RED
+                                actionItem: =props.inputAction
+                                bgColor: black
+                                iconF7: circle_fill
+                                iconSize: 20
+                                style:
+                                  background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                                  border-radius: 12px
+                                  box-shadow: 0px 2px 5px
+                                  color: red
+                                  width: 20%
+                            - component: oh-button
+                              config:
+                                action: command
+                                actionCommand: KEY_GREEN
+                                actionItem: =props.inputAction
+                                bgColor: black
+                                iconF7: circle_fill
+                                iconSize: 20
+                                style:
+                                  background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                                  border-radius: 12px
+                                  box-shadow: 0px 2px 5px
+                                  color: green
+                                  width: 20%
+                            - component: oh-button
+                              config:
+                                action: command
+                                actionCommand: KEY_YELLOW
+                                actionItem: =props.inputAction
+                                bgColor: black
+                                iconF7: circle_fill
+                                iconSize: 20
+                                style:
+                                  background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                                  border-radius: 12px
+                                  box-shadow: 0px 2px 5px
+                                  color: yellow
+                                  width: 20%
+                            - component: oh-button
+                              config:
+                                action: command
+                                actionCommand: KEY_BLUE
+                                actionItem: =props.inputAction
+                                bgColor: black
+                                iconF7: circle_fill
+                                iconSize: 20
+                                style:
+                                  background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                                  border-radius: 12px
+                                  box-shadow: 0px 2px 5px
+                                  color: blue
+                                  width: 20%
+                      - component: f7-row
+                        config:
+                          style:
+                            margin-top: 10px
+                        slots:
+                          default:
+                            - component: oh-button
+                              config:
+                                action: command
+                                actionCommand: KEY_REWIND
+                                actionItem: =props.inputAction
+                                bgColor: black
+                                iconF7: backward_end
+                                iconSize: 20
+                                style:
+                                  background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                                  border-radius: 12px
+                                  box-shadow: 0px 2px 5px
+                                  color: var(--f7-text-color)
+                                  width: 20%
+                            - component: oh-button
+                              config:
+                                action: command
+                                actionCommand: KEY_STOP
+                                actionItem: =props.inputAction
+                                bgColor: black
+                                iconF7: stop
+                                iconSize: 20
+                                style:
+                                  background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                                  border-radius: 12px
+                                  box-shadow: 0px 2px 5px
+                                  color: var(--f7-text-color)
+                                  width: 20%
+                            - component: oh-button
+                              config:
+                                action: command
+                                actionCommand: KEY_PLAY
+                                actionItem: =props.inputAction
+                                bgColor: black
+                                iconF7: playpause
+                                iconSize: 20
+                                style:
+                                  background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                                  border-radius: 12px
+                                  box-shadow: 0px 2px 5px
+                                  color: var(--f7-text-color)
+                                  width: 20%
+                            - component: oh-button
+                              config:
+                                action: command
+                                actionCommand: KEY_FF
+                                actionItem: =props.inputAction
+                                bgColor: black
+                                iconF7: forward_end
+                                iconSize: 20
+                                style:
+                                  background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                                  border-radius: 12px
+                                  box-shadow: 0px 2px 5px
+                                  color: var(--f7-text-color)
+                                  width: 20%
+                - component: f7-block
+                  config:
+                    style:
+                      height: 220px
+                      width: auto
+                  slots:
+                    default:
+                      - component: oh-button
+                        config:
+                          action: command
+                          actionCommand: KEY_EXIT
+                          actionItem: =props.inputAction
+                          style:
+                            background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                            border-radius: 12px
+                            box-shadow: 0px 2px 5px
+                            color: var(--f7-text-color)
+                            left: 10%
+                            position: absolute
+                            top: 15px
+                            width: 70px
+                          text: EXIT
+                      - component: oh-button
+                        config:
+                          action: command
+                          actionCommand: KEY_MENU
+                          actionItem: =props.inputAction
+                          style:
+                            background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                            border-radius: 12px
+                            box-shadow: 0px 2px 5px
+                            color: var(--f7-text-color)
+                            position: absolute
+                            right: 10%
+                            top: 15px
+                            width: 70px
+                          text: MENU
+                      - component: oh-button
+                        config:
+                          action: command
+                          actionCommand: KEY_MUTE
+                          actionItem: =props.inputAction
+                          iconF7: speaker_slash
+                          iconSize: 25
+                          style:
+                            background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                            border-radius: 12px
+                            box-shadow: 0px 2px 5px
+                            color: red
+                            left: 50%
+                            position: absolute
+                            top: 15px
+                            transform: translate(-50%)
+                      - component: oh-button
+                        config:
+                          action: command
+                          actionCommand: KEY_RETURN
+                          actionItem: =props.inputAction
+                          iconF7: arrow_counterclockwise
+                          iconSize: 25
+                          style:
+                            background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                            border-bottom: 0px
+                            border-radius: 12px
+                            box-shadow: 0px 2px 5px
+                            color: var(--f7-text-color)
+                            display: flex
+                            height: 40px
+                            left: 10%
+                            position: absolute
+                            top: 60px
+                            transform: skew(140deg)
+                            width: 15%
+                            z-index: 2
+                      - component: f7-badge
+                        config:
+                          bgColor: gray
+                          style:
+                            background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                            border-radius: 100px/100px
+                            box-shadow: 1px 0px 8px
+                            height: 160px
+                            left: 50%
+                            position: absolute
+                            top: 60px
+                            transform: translate(-50%)
+                            width: 160px
+                            z-index: 1
+                      - component: f7-badge
+                        config:
+                          bgColor: black
+                          style:
+                            background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                            border-radius: 60px
+                            box-shadow: 1px 0px 8px
+                            height: 60px
+                            left: 50%
+                            position: absolute
+                            top: 110px
+                            transform: translate(-50%)
+                            width: 60px
+                            z-index: 3
+                      - component: oh-link
+                        config:
+                          action: command
+                          actionCommand: KEY_ENTER
+                          actionItem: =props.inputAction
+                          style:
+                            color: var(--f7-text-color)
+                            font-size: 18px
+                            left: 50%
+                            position: absolute
+                            top: 125px
+                            transform: translate(-50%)
+                            z-index: 3
+                          text: OK
+                      - component: oh-link
+                        config:
+                          action: command
+                          actionCommand: KEY_UP
+                          actionItem: =props.inputAction
+                          iconF7: arrowtriangle_up
+                          iconSize: 35
+                          style:
+                            color: var(--f7-text-color)
+                            left: 50%
+                            position: absolute
+                            top: 67px
+                            transform: translate(-50%)
+                            z-index: 2
+                      - component: oh-link
+                        config:
+                          action: command
+                          actionCommand: KEY_LEFT
+                          actionItem: =props.inputAction
+                          iconF7: arrowtriangle_left
+                          iconSize: 35
+                          style:
+                            color: var(--f7-text-color)
+                            left: 50%
+                            position: absolute
+                            top: 120px
+                            transform: translate(-75px)
+                            z-index: 2
+                      - component: oh-link
+                        config:
+                          action: command
+                          actionCommand: KEY_RIGHT
+                          actionItem: =props.inputAction
+                          iconF7: arrowtriangle_right
+                          iconSize: 35
+                          style:
+                            color: var(--f7-text-color)
+                            left: 50%
+                            position: absolute
+                            top: 120px
+                            transform: translate(45px)
+                            z-index: 2
+                      - component: oh-link
+                        config:
+                          action: command
+                          actionCommand: KEY_DOWN
+                          actionItem: =props.inputAction
+                          iconF7: arrowtriangle_down
+                          iconSize: 35
+                          style:
+                            color: var(--f7-text-color)
+                            left: 50%
+                            position: absolute
+                            top: 180px
+                            transform: translate(-50%)
+                            z-index: 2
+                      - component: oh-button
+                        config:
+                          action: command
+                          actionCommand: left
+                          actionItem: =props.inputaction
+                          iconF7: circle
+                          iconSize: 25
+                          style:
+                            align-items: center
+                            background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                            border-bottom: 0px
+                            border-radius: 12px
+                            box-shadow: 0px 2px 5px
+                            color: var(--f7-text-color)
+                            display: flex
+                            height: 40px
+                            justify-content: center
+                            position: absolute
+                            right: 10%
+                            top: 60px
+                            transform: skew(40deg)
+                            width: 15%
+                            z-index: 2
+                      - component: oh-button
+                        config:
+                          action: command
+                          actionCommand: KEY_GUIDE
+                          actionItem: =props.inputaction
+                          iconF7: doc_plaintext
+                          iconSize: 25
+                          style:
+                            align-items: center
+                            background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                            border-bottom: 0px
+                            border-radius: 12px
+                            box-shadow: 0px 2px 5px
+                            color: var(--f7-text-color)
+                            display: flex
+                            height: 40px
+                            justify-content: center
+                            left: 10%
+                            position: absolute
+                            top: 180px
+                            transform: skew(40deg)
+                            width: 15%
+                            z-index: 2
+                      - component: oh-button
+                        config:
+                          action: command
+                          actionCommand: KEY_INFO
+                          actionItem: =props.inputAction
+                          iconF7: info_circle
+                          iconSize: 25
+                          style:
+                            align-items: center
+                            background-image: "linear-gradient(360deg, var(--f7-card-bg-color) 10%, #494949 180%)"
+                            border-bottom: 0px
+                            border-radius: 12px
+                            box-shadow: 0px 2px 5px
+                            color: var(--f7-text-color)
+                            display: flex
+                            height: 40px
+                            justify-content: center
+                            position: absolute
+                            right: 10%
+                            top: 180px
+                            transform: skew(140deg)
+                            width: 15%
+                            z-index: 2
+          - component: f7-tab
+            config:
+              style:
+                animation: f7-fade-in 300ms
+                filter: drop-shadow(0px 1px 1px var(--f7-card-bg-color))
+                margin: 5px
+                margin-right: 5px
+                padding: 0px
+              visible: =(vars.select == 4)
+            slots:
+              default:
+                - component: oh-list
+                  config: {}
+                  slots:
+                    default:
+                      - component: oh-list-item
+                        config:
+                          accordionItem: false
+                          action: toggle
+                          actionCommand: ON
+                          actionCommandAlt: OFF
+                          actionItem: =[props.lock_item]
+                          badge: '=(items[props.lock_item].state == "ON") ? "Закрыты" : "Открыт"'
+                          badgeColor: '=(items[props.lock_item].state == "ON") ? "green" : "red"'
+                          icon: "=(items[props.lock_item].state === 'ON') ? 'f7:lock' : 'f7:lock_open'"
+                          item: =props.lock_item
+                          style:
+                            font-size: large
+                            --f7-list-item-title-font-weight: 620
+                          title: Замок
+                          visible: "=props.lock_item ? true : false"
+                      - component: oh-list-item
+                        config:
+                          accordionItem: true
+                          action: analyzer
+                          actionAnalyzerItems: =[props.door_item]
+                          badge: '=(items[props.door_item].state == "ON") ? "Закрыты" : "Открыты"'
+                          badgeColor: '=(items[props.door_item].state == "ON") ? "green" : "red"'
+                          icon: "=(items[props.door_item].state === 'ON') ? 'door-closed' : 'door-open'"
+                          item: =props.door_item
+                          style:
+                            font-size: large
+                            --f7-list-item-title-font-weight: 620
+                          title: Двери
+                          visible: "=props.door_item ? true : false"
+                        slots:
+                          accordion:
+                            - component: oh-repeater
+                              config:
+                                for: item
+                                fragment: true
+                                groupItem: =props.door_item
+                                sourceType: itemsInGroup
+                              slots:
+                                default:
+                                  - component: oh-list-item
+                                    config:
+                                      action: analyzer
+                                      actionAnalyzerCoordSystem: time
+                                      actionAnalyzerItems: =[loop.item.name]
+                                      badge: '=(items[loop.item.name].state == "ON") ? "Закрыты" : "Открыты"'
+                                      badgeColor: '=(items[loop.item.name].state == "ON") ? "green" : "red"'
+                                      icon: '=(items[loop.item.name].state == "ON") ? "door-closed" : "door-open"'
+                                      item: =loop.item.name
+                                      title: =loop.item.label
+                      - component: oh-list-item
+                        config:
+                          accordionItem: true
+                          action: analyzer
+                          actionAnalyzerItems: =[props.window_item]
+                          badge: '=(items[props.window_item].state == "ON") ? "Закрыты" : "Открыты"'
+                          badgeColor: '=(items[props.window_item].state == "ON") ? "green" : "red"'
+                          icon: "=(items[props.window_item].state === 'ON') ? 'window-closed' : 'window-open'"
+                          item: =props.window_item
+                          style:
+                            font-size: large
+                            --f7-list-item-title-font-weight: 620
+                          title: Окна
+                          visible: "=props.window_item ? true : false"
+                        slots:
+                          accordion:
+                            - component: oh-repeater
+                              config:
+                                for: item
+                                fragment: true
+                                groupItem: =props.window_item
+                                sourceType: itemsInGroup
+                              slots:
+                                default:
+                                  - component: oh-list-item
+                                    config:
+                                      action: analyzer
+                                      actionAnalyzerCoordSystem: time
+                                      actionAnalyzerItems: =[loop.item.name]
+                                      badge: '=(items[loop.item.name].state == "ON") ? "Закрыта" : "Норма"'
+                                      badgeColor: '=(items[loop.item.name].state == "ON") ? "gray" : "lightblue"'
+                                      icon: '=(items[loop.item.name].state == "ON") ? "window-closed" : "window-open"'
+                                      item: =loop.item.name
+                                      title: =loop.item.label
+                      - component: oh-list-item
+                        config:
+                          accordionItem: true
+                          action: analyzer
+                          actionAnalyzerItems: =[props.motion_item]
+                          badge: '=(items[props.motion_item].state == "ON") ? "Движение" : "Спокойно"'
+                          badgeColor: '=(items[props.motion_item].state == "ON") ? "red" : "green"'
+                          icon: f7:dot_radiowaves_left_right
+                          item: =props.motion_item
+                          style:
+                            font-size: large
+                            --f7-list-item-title-font-weight: 620
+                          title: Движение
+                          visible: "=props.motion_item ? true : false"
+                        slots:
+                          accordion:
+                            - component: oh-repeater
+                              config:
+                                for: item
+                                fragment: true
+                                groupItem: =props.motion_item
+                                sourceType: itemsInGroup
+                              slots:
+                                default:
+                                  - component: oh-list-item
+                                    config:
+                                      action: analyzer
+                                      actionAnalyzerCoordSystem: time
+                                      actionAnalyzerItems: =[loop.item.name]
+                                      badge: '=(items[loop.item.name].state == "ON") ? "Движение" : "Спокойно"'
+                                      badgeColor: '=(items[loop.item.name].state == "ON") ? "red" : "green"'
+                                      icon: f7:dot_radiowaves_left_right
+                                      item: =loop.item.name
+                                      title: =loop.item.label
+                      - component: oh-list-item
+                        config:
+                          action: analyzer
+                          actionAnalyzerItems: =[props.leakage_item]
+                          badge: '=(items[props.leakage_item].state == "ON") ? "Утечка" : "Сухо"'
+                          badgeColor: '=(items[props.leakage_item].state == "ON") ? "red" : "green"'
+                          icon: "=(items[props.leakage_item].state === 'ON') ? 'f7:drop_triangle' : 'f7:drop'"
+                          item: =props.motion_item
+                          style:
+                            font-size: large
+                            --f7-list-item-title-font-weight: 620
+                          title: Утечка
+                          visible: "=props.leakage_item ? true : false"
+                      - component: oh-list-item
+                        config:
+                          action: analyzer
+                          actionAnalyzerItems: =[props.smoke_item]
+                          badge: '=(items[props.smoke_item].state == "ON") ? "Задымление" : "Дыма нет"'
+                          badgeColor: '=(items[props.smoke_item].state == "ON") ? "red" : "green"'
+                          icon: "=(items[props.smoke_item].state === 'ON') ? 'f7:flame_fill' : 'f7:flame'"
+                          item: =props.smoke_item
+                          style:
+                            font-size: large
+                            --f7-list-item-title-font-weight: 620
+                          title: Задымление
+                          visible: "=props.smoke_item ? true : false"
+          - component: f7-tab
+            config:
+              class:
+                - display-flex
+                - justify-content-space-between
+                - flex-direction-column
+              style:
+                animation: f7-fade-in 300ms
+                margin: 5px
+                padding: 0px
+              visible: =(vars.select == 5)
+            slots:
+              default:
+                - component: f7-block
+                  config:
+                    style:
+                      text-shadow: none
+                      width: 100%
+                  slots:
+                    default:
+                      - component: oh-chart
+                        config:
+                          height: 50vh
+                          options:
+                            backgroundColor: rgba(0,0,0,0.5)
+                            color:
+                              - red
+                              - "#01ffa6"
+                              - yellow
+                              - "#1689f2"
+                            textStyle:
+                              color: white
+                        slots:
+                          dataZoom:
+                            - component: oh-chart-datazoom
+                              config:
+                                type: inside
+                          grid:
+                            - component: oh-chart-grid
+                              config:
+                                includeLabels: true
+                                left: center
+                                width: 60%
+                          legend:
+                            - component: oh-chart-legend
+                              config:
+                                bottom: 1
+                                textStyle:
+                                  color: var(--f7-text-color)
+                                type: scroll
+                          series:
+                            - component: oh-time-series
+                              config:
+                                gridIndex: 0
+                                item: =props.temp_item
+                                name: Temperature
+                                type: line
+                                visible: "=props.temp_item ? true : false"
+                                xAxisIndex: 0
+                                yAxisIndex: 0
+                            - component: oh-time-series
+                              config:
+                                gridIndex: 0
+                                item: =props.humidity_item
+                                name: Humidity
+                                type: line
+                                visible: "=props.humidity_item ? true : false"
+                                xAxisIndex: 0
+                                yAxisIndex: 1
+                            - component: oh-time-series
+                              config:
+                                gridIndex: 0
+                                item: =props.lightlevel_item
+                                name: Lightlevel
+                                type: line
+                                visible: "=props.lightlevel_item ? true : false"
+                                xAxisIndex: 0
+                                yAxisIndex: 2
+                            - component: oh-time-series
+                              config:
+                                gridIndex: 0
+                                item: =props.CO_item
+                                name: CO2
+                                type: line
+                                visible: "=props.CO_item ? true : false"
+                                xAxisIndex: 0
+                                yAxisIndex: 3
+                          tooltip:
+                            - component: oh-chart-tooltip
+                              config:
+                                confine: true
+                                smartFormatter: true
+                          xAxis:
+                            - component: oh-time-axis
+                              config:
+                                gridIndex: 0
+                          yAxis:
+                            - component: oh-value-axis
+                              config:
+                                gridIndex: 0
+                                name: °C
+                                nameLocation: start
+                                position: left
+                                show: "=props.temp_item ? true : false"
+                            - component: oh-value-axis
+                              config:
+                                gridIndex: 0
+                                name: "%"
+                                nameLocation: start
+                                position: right
+                                show: "=props.humidity_item ? true : false"
+                            - component: oh-value-axis
+                              config:
+                                gridIndex: 0
+                                name: lux
+                                nameLocation: start
+                                offset: 20
+                                position: left
+                                show: "=props.lightlevel_item ? true : false"
+                            - component: oh-value-axis
+                              config:
+                                gridIndex: 0
+                                name: ppm
+                                nameLocation: start
+                                offset: 30
+                                scale: true
+                                show: "=props.CO_item ? true : false"
